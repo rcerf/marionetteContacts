@@ -1,0 +1,23 @@
+{
+  "name": "marionetteContacts",
+  "version": "0.0.0",
+  "description": "a contact manager in marionette",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rcerf/marionetteContacts.git"
+  },
+  "author": "Rick Cerf",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/rcerf/marionetteContacts/issues"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "grunt": "~0.4.2",
+    "nib": "~1.0.2"
+  }
+}
