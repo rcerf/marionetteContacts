@@ -21,8 +21,8 @@
     <p>Here is static content in the web page. You'll notice it gets replaced by our app as soon as we start it.</p>
   </div>
 
-  <script type="text/template" id="contact-template">
-    <p><%= firstName %> <%= lastName %></p>
+  <script type="text/template" id="contact-list-item">
+    <li><%= firstName %> <%= lastName %></li>
   </script>
 
   <script src="./bower_components/jquery/dist/jquery.min.js"></script>
@@ -37,24 +37,59 @@
       mainRegion: "#main-region"
     });
 
-    ContactManager.Contact = Backbone.Model.extend({});
+    ContactManager.Contact = Backbone.Model.extend({
+      defaults: {
+        firstName: "",
+        lastName: "",
+        phoneNumber: "No phone number!"
+      }
+    });
 
-    ContactManager.ContactView = Marionette.ItemView.extend({
-      template: "#contact-template"
+    ContactManager.ContactCollection = Backbone.Collection.extend({
+      model: ContactManager.Contact
+    });
+
+    ContactManager.ContactItemView = Marionette.ItemView.extend({
+      template: "#contact-list-item",
+      events: {
+        "click li": "alertPhoneNumber" 
+      },
+
+      alertPhoneNumber: function(){
+        alert(this.model.escape("phoneNumber"));
+      }
+    });
+
+    ContactManager.ContactsView = Marionette.CollectionView.extend({
+      tagName: "ul",
+      itemView: ContactManager.ContactItemView
     });
 
     ContactManager.on("initialize:after", function(){
-      var alice = new ContactManager.Contact({
-        firstName: "Alice",
-        lastName: "Alan",
-        phoneNumber: "555-5555"
+
+      var contacts = new ContactManager.ContactCollection([
+        {
+          firstName: "Bob",
+          lastName: "Cerf",
+          phoneNumber: "781-3016"
+        },
+        {
+          firstName: "Beppie",
+          lastName: "Cerf",
+          phoneNumber: "329-5688"
+        },
+        {
+          firstName: "Brett",
+          lastName: "Cerf",
+          phoneNumber: "831-5650"
+        }
+      ]);
+
+      var contactsView = new ContactManager.ContactsView({
+        collection: contacts
       });
 
-      var aliceView = new ContactManager.ContactView({
-        model: alice
-      });
-
-      ContactManager.mainRegion.show(aliceView);
+      ContactManager.mainRegion.show(contactsView);
     });
 
     ContactManager.start();
