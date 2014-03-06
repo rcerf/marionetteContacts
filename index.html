@@ -22,34 +22,23 @@
   </div>
 
   <script type="text/template" id="contact-list-item">
-    <li><%= firstName %> <%= lastName %></li>
+    <%= firstName %> <%= lastName %>
   </script>
 
   <script src="./bower_components/jquery/dist/jquery.min.js"></script>
   <script src="./bower_components/underscore/underscore.js"></script>
   <script src="./bower_components/backbone/backbone.js"></script>
   <script src="./bower_components/marionette/lib/backbone.marionette.js"></script>
+  <script src="./assets/js/app.js"></script>
+  <script src="./assets/js/entities/contact.js"></script>
 
   <script type="text/javascript">
-    var ContactManager = new Marionette.Application();
 
-    ContactManager.addRegions({
-      mainRegion: "#main-region"
-    });
 
-    ContactManager.Contact = Backbone.Model.extend({
-      defaults: {
-        firstName: "",
-        lastName: "",
-        phoneNumber: "No phone number!"
-      }
-    });
 
-    ContactManager.ContactCollection = Backbone.Collection.extend({
-      model: ContactManager.Contact
-    });
 
     ContactManager.ContactItemView = Marionette.ItemView.extend({
+      tagName: 'li',
       template: "#contact-list-item",
       events: {
         "click li": "alertPhoneNumber" 
