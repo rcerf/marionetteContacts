@@ -32,22 +32,10 @@
   <script src="./assets/js/app.js"></script>
   <script src="./assets/js/entities/contact.js"></script>
   <script src="./assets/js/contacts/list/list_view.js"></script>
+  <script src="./assets/js/contacts/list/list_controller.js"></script>
 
   <script type="text/javascript">
-
-    ContactManager.on("initialize:after", function(){
-
-      var contacts = ContactManager.request("contact:entities");
-
-      var contactsView = new ContactManager.ContactsApp.List.Contacts({
-        collection: contacts
-      });
-
-      ContactManager.mainRegion.show(contactsView);
-    });
-
     ContactManager.start();
-
   </script>
 </body>
 </html>
