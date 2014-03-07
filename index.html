@@ -31,50 +31,15 @@
   <script src="./bower_components/marionette/lib/backbone.marionette.js"></script>
   <script src="./assets/js/app.js"></script>
   <script src="./assets/js/entities/contact.js"></script>
+  <script src="./assets/js/contacts/list/list_view.js"></script>
 
   <script type="text/javascript">
 
-
-
-
-    ContactManager.ContactItemView = Marionette.ItemView.extend({
-      tagName: 'li',
-      template: "#contact-list-item",
-      events: {
-        "click li": "alertPhoneNumber" 
-      },
-
-      alertPhoneNumber: function(){
-        alert(this.model.escape("phoneNumber"));
-      }
-    });
-
-    ContactManager.ContactsView = Marionette.CollectionView.extend({
-      tagName: "ul",
-      itemView: ContactManager.ContactItemView
-    });
-
     ContactManager.on("initialize:after", function(){
 
-      var contacts = new ContactManager.ContactCollection([
-        {
-          firstName: "Bob",
-          lastName: "Cerf",
-          phoneNumber: "781-3016"
-        },
-        {
-          firstName: "Beppie",
-          lastName: "Cerf",
-          phoneNumber: "329-5688"
-        },
-        {
-          firstName: "Brett",
-          lastName: "Cerf",
-          phoneNumber: "831-5650"
-        }
-      ]);
+      var contacts = ContactManager.request("contact:entities");
 
-      var contactsView = new ContactManager.ContactsView({
+      var contactsView = new ContactManager.ContactsApp.List.Contacts({
         collection: contacts
       });
 
