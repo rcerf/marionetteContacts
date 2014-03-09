@@ -16,4 +16,10 @@ ContactManager.module("ContactsApp", function(ContactsApp, ContactManager, Backb
       controller: API
     });
   });
+
+  ContactManager.on("contacts:list", function(){
+    ContactManager.navigate("contacts");
+    API.listContacts();
+  });
+
 });
