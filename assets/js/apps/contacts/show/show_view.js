@@ -12,4 +12,8 @@ ContactManager.module("ContactsApp.Show", function(Show, ContactManager, Backbon
     }
   });
 
+  Show.MissingContact = Marionette.ItemView.extend({
+    template:"#missing-contact-view"
+  });
+
 });
