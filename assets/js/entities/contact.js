@@ -1,5 +1,6 @@
 ContactManager.module("Entities", function(Entities, ContactManager, Backbone, Marionette, $, _){
   Entities.Contact = Backbone.Model.extend({
+    urlRoot: "contacts",
     defaults: {
       firstName: "",
       lastName: "",
@@ -7,7 +8,10 @@ ContactManager.module("Entities", function(Entities, ContactManager, Backbone, M
     }
   });
 
+  Entities.ConfigureStorage(Entities.Contact);
+
   Entities.ContactCollection = Backbone.Collection.extend({
+    url: "contacts",
     model: Entities.Contact,
     comparator: function(a, b){
       var aFirstName = a.get("firstName");
@@ -34,6 +38,8 @@ ContactManager.module("Entities", function(Entities, ContactManager, Backbone, M
       }
     }
   });
+
+  Entities.ConfigureStorage(Entities.ContactCollection);
 
   var contacts;
 
