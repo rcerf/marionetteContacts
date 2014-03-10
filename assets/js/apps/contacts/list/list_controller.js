@@ -16,6 +16,7 @@ ContactManager.module("ContactsApp.List", function(List, ContactManager, Backbon
       });
 
       contactsListView.on("itemview:contact:show", function(childView, model){
+        ContactManager.trigger("contact:show", model.get("id"));
         ContactManager.ContactsApp.Show.Controller.showContact(model);
       });
 

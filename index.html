@@ -24,13 +24,13 @@
   <script type="text/template" id="contact-list-item">
     <td> <%= firstName %> </td> <td> <%= lastName %> </td>
     <td>
-      <a href="#" class="btn btn-default btn-xs js-show">
+      <a href="#contacts/<%= id %>" class="btn btn-default btn-xs js-show">
         <i class="glyphicon glyphicon-eye-open"></i>
-        Show  
+        Show
       </a>
       <button class="btn btn-default btn-xs js-delete">
         <i class="glyphicon glyphicon-remove"></i>
-        Delete  
+        Delete
       </button>
     </td>
   </script>
@@ -49,6 +49,7 @@
 
   <script type="text/template" id="contact-view">
     <h1> <%= firstName %> <%= lastName %> </h1>
+    <p><a href="#contacts" class="js-list-contacts">Display contacts List</a></p>
     <p><strong>Phone number: </strong> <%= phoneNumber %></p>
   </script>
   <!-- Load Libraries -->
